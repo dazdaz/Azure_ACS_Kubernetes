@@ -25,6 +25,9 @@ k8s-master-519f5f2c-0   Ready,SchedulingDisabled   1m        v1.6.6    <none>   
 # SSH onto k8s Master
 $ ssh -l azureuser washk8swebmgmt.southeastasia.cloudapp.azure.com
 
+# View the worker nodes InternalIP Addresses
+kubectl get nodes --output=jsonpath='{range .items[*]}{.status.addresses[?(@.type=="InternalIP")].address} {.spec.podCIDR} {"\n"}{end}'
+
 # Install helm 2.5.1 - Compatible with aci-connector
 $ wget curl https://kubernetes-helm.storage.googleapis.com/helm-v2.5.1-linux-amd64.tar.gz
 $ sudo tar xvzf helm-v2.5.1-linux-amd64.tar.gz -C /usr/local/bin/ --strip-components=1 linux-amd64/helm
