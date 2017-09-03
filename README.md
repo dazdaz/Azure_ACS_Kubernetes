@@ -22,11 +22,18 @@ k8s-agent-519f5f2c-1    Ready                      1m        v1.6.6    <none>   
 k8s-agent-519f5f2c-2    Ready                      1m        v1.6.6    <none>        Debian GNU/Linux 8 (jessie)   4.4.0-93-generic
 k8s-master-519f5f2c-0   Ready,SchedulingDisabled   1m        v1.6.6    <none>        Debian GNU/Linux 8 (jessie)   4.4.0-93-generic
 
-# SSH onto k8s Master
-$ ssh -l azureuser washk8swebmgmt.southeastasia.cloudapp.azure.com
-
 # View the worker nodes InternalIP Addresses
 kubectl get nodes --output=jsonpath='{range .items[*]}{.status.addresses[?(@.type=="InternalIP")].address} {.spec.podCIDR} {"\n"}{end}'
+
+# Copy private RSA key onto k8s Master
+scp ~/.ssh/id_rsa azureuser@washk8swebmgmt.southeastasia.cloudapp.azure.com:~/.ssh/
+
+# Test SSH onto k8s Master
+$ ssh -l azureuser washk8swebmgmt.southeastasia.cloudapp.azure.com
+# Use ProxyJump introduced into OpenSSH 7.3, to send commands directly to the k8s agents
+$ ssh -A -J azureuser@washk8swebmgmt.southeastasia.cloudapp.azure.com azureuser@node1 "sudo apt-get update"
+$ ssh -A -J azureuser@washk8swebmgmt.southeastasia.cloudapp.azure.com azureuser@node2 "sudo apt-get update"
+$ ssh -A -J azureuser@washk8swebmgmt.southeastasia.cloudapp.azure.com azureuser@node3 "sudo apt-get update"
 
 # Install helm 2.5.1 - Compatible with aci-connector
 $ wget curl https://kubernetes-helm.storage.googleapis.com/helm-v2.5.1-linux-amd64.tar.gz
@@ -36,6 +43,7 @@ $ sudo tar xvzf helm-v2.5.1-linux-amd64.tar.gz -C /usr/local/bin/ --strip-compon
 $ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
 $ chmod 700 get_helm.sh
 $ ./get_helm.sh
+
 $ helm init
 </pre>
 
