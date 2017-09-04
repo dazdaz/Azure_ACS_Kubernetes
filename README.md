@@ -47,5 +47,5 @@ $ ./get_helm.sh
 $ helm init
 </pre>
 
-# Install & Configure aci-connector-k8s
+# Install & Configure aci-connector-k8s *experimental*
 https://github.com/Azure/aci-connector-k8s
