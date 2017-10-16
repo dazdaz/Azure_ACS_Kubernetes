@@ -6,8 +6,13 @@ RESOURCE_GROUP=washk8srg
 DNS_PREFIX=washk8sweb
 CLUSTER_NAME=k8s-acs-wash
 LOCATION=southeastasia
+MASTER_OS_DISK=50
+AGENT_OS_DISK=120
 
-$ az acs create --orchestrator-type=kubernetes --resource-group $RESOURCE_GROUP --name=$CLUSTER_NAME --dns-prefix=$DNS_PREFIX --admin-username=azureuser --admin-password secret123 --generate-ssh-keys --master-count=1 --agent-count=3 --agent-vm-size=Standard_D1_v2
+$ az acs create --orchestrator-type=kubernetes --resource-group $RESOURCE_GROUP --name=$CLUSTER_NAME --dns-prefix=$DNS_PREFIX \
+--admin-username=azureuser --admin-password secret123 --generate-ssh-keys --master-count=1 --agent-count=2 \
+--agent-vm-size=Standard_D1_v2 --master-storage-profile ManagedDisks --master-osdisk-size	$MASTER_OS_DISK \
+--agent-storage-profile ManagedDisks --agent-osdisk-size $AGENT_OS_DISK
 $ az acs list --resource-group $RESOURCE_GROUP --output jsonc
 $ az acs kubernetes get-credentials --name $CLUSTER_NAME --resource-group $RESOURCE_GROUP
 $ sudo az acs kubernetes install-cli
