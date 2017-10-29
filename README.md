@@ -1,6 +1,9 @@
 <pre>
+# Azure Container Service
 # Deployed on 16th Oct 2017
 # Deploys Ubuntu 16.04.02 Master and Guest, Docker 1.12.6, Kubernetes 1.6.6 / Otherwise known as ACS RP v1 (K8s 1.6.6)
+
+# https://docs.microsoft.com/en-us/cli/azure/acs?view=azure-cli-latest#az_acs_create
 
 RESOURCE_GROUP=washk8srg
 DNS_PREFIX=washk8sweb
