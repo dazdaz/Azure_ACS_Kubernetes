@@ -55,5 +55,5 @@ $ ./get_helm.sh
 $ helm init
 </pre>
 
-# Install & Configure aci-connector-k8s *experimental*
-https://github.com/Azure/aci-connector-k8s
+# Install & configure virtual-kubelet *experimental*
+https://github.com/virtual-kubelet/virtual-kubelet
