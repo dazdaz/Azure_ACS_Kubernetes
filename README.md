@@ -54,6 +54,3 @@ $ ./get_helm.sh
 
 $ helm init
 </pre>
-
-# Install & configure virtual-kubelet *experimental*
-https://github.com/virtual-kubelet/virtual-kubelet
