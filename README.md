@@ -68,7 +68,7 @@ az acs create \
     --location=westus2 \
     --master-first-consecutive-static-ip=10.30.255.239 \
     --master-vm-size=Standard_D2s_v3 \
-    --master-vnet-subnet-id="/subscriptions/6aa2a3a6-a137-4d31-9e71-c84499df8fbc/resourceGroups/idp-dev-kubernetes-front-end-vnet-rg/providers/Microsoft.Network/virtualNetworks/idp-dev-kubernetes-front-end-vnet/subnets/k8s-subnet" \
+    --master-vnet-subnet-id="/subscriptions/88888888-aaaa-4444-9999-c84499df8fbc/resourceGroups/idp-dev-kubernetes-front-end-vnet-rg/providers/Microsoft.Network/virtualNetworks/idp-dev-kubernetes-front-end-vnet/subnets/k8s-subnet" \
     --orchestrator-type=kubernetes \
     --orchestrator-version=1.8.6 \
     --service-principal=<redacted> \
